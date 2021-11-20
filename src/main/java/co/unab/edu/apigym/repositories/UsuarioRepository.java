@@ -17,4 +17,5 @@ public interface UsuarioRepository extends MongoRepository<UserModel , String>{
 
     @Query("{fechaIngreso:'?0'}")
     ArrayList<UserModel>findByFechaIngreso(LocalDate fechaIngreso);
+    
 }

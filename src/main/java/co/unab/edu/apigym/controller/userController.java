@@ -1,5 +1,6 @@
 package co.unab.edu.apigym.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -54,6 +55,11 @@ public class userController {
     @GetMapping("/unombre")
     public ArrayList<UserModel> userPorNombre(@RequestParam ("nombre") String nombre){
         return this.usuarioService.obtenerUsuarioPorNombre(nombre);
+    }
+   @GetMapping("/fecha")
+    public ArrayList<UserModel> usuarioPorRegistro(@RequestParam("fechaIngreso") String fechaIngreso){
+        LocalDate d1 = LocalDate.parse(fechaIngreso);
+        return this.usuarioService.usuarioPorRegistro(d1);
     }
 
 }

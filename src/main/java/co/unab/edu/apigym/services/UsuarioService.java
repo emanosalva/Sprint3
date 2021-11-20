@@ -37,11 +37,13 @@ public class UsuarioService {
     public Optional<UserModel> obternerUsuarioPorId(String id){
         return usuarioRepository.findById(id);
     }
-    public ArrayList<UserModel> obtenerUserPorFecha(LocalDate fechaIngreso){
-        return usuarioRepository.findByFechaIngreso(fechaIngreso);
-    }
 
     public ArrayList <UserModel> obtenerUsuarioPorNombre(String nombre){
         return usuarioRepository.findByNombre(nombre);
     }
+
+    public ArrayList<UserModel> usuarioPorRegistro(LocalDate fechaIngreso){
+        return usuarioRepository.findByFechaIngreso(fechaIngreso);
+    }
+    
 }
