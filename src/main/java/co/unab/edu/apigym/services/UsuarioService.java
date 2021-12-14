@@ -1,12 +1,13 @@
 package co.unab.edu.apigym.services;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//mport ch.qos.logback.core.net.server.Client;
 import co.unab.edu.apigym.models.UserModel;
 import co.unab.edu.apigym.repositories.UsuarioRepository;
 
@@ -21,6 +22,7 @@ public class UsuarioService {
     }
 
     public UserModel guardarUsuario(UserModel usuario) {
+        usuario.setNombre( usuario.getNombre().toLowerCase());
         return usuarioRepository.save(usuario);
     }
 
@@ -42,8 +44,14 @@ public class UsuarioService {
         return usuarioRepository.findByNombre(nombre);
     }
 
-    public ArrayList<UserModel> usuarioPorRegistro(LocalDate fechaIngreso){
-        return usuarioRepository.findByFechaIngreso(fechaIngreso);
+    public ArrayList<UserModel> obtenerUsuarioPorApellido(String apellido){
+        return usuarioRepository.findByApellido(apellido);
+
     }
+
+    
+    // public ArrayList<UserModel> usuarioPorRegistro(LocalDate fechaIngreso){
+    //     return usuarioRepository.findByFechaIngreso(fechaIngreso);
+    // }
     
 }

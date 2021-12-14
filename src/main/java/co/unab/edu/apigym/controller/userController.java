@@ -1,6 +1,6 @@
 package co.unab.edu.apigym.controller;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.unab.edu.apigym.models.UserModel;
 import co.unab.edu.apigym.services.UsuarioService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 @RequestMapping("/usuario")
 
 public class userController {
@@ -52,14 +52,27 @@ public class userController {
         return this.usuarioService.obternerUsuarioPorId(id);
     }
     
-    @GetMapping("/unombre")
-    public ArrayList<UserModel> userPorNombre(@RequestParam ("nombre") String nombre){
+    @GetMapping("/unombre/{nombre}")
+    public ArrayList<UserModel> userPorNombre(@PathVariable ("nombre") String nombre){
         return this.usuarioService.obtenerUsuarioPorNombre(nombre);
     }
-   @GetMapping("/fecha")
-    public ArrayList<UserModel> usuarioPorRegistro(@RequestParam("fechaIngreso") String fechaIngreso){
-        LocalDate d1 = LocalDate.parse(fechaIngreso);
-        return this.usuarioService.usuarioPorRegistro(d1);
+
+    @GetMapping("uapellido/{apellido}")
+    public ArrayList<UserModel> usuarioPorApellido(@PathVariable("apellido") String apellido){
+        return usuarioService.obtenerUsuarioPorApellido(apellido);
+    }
+        
     }
 
-}
+
+
+
+
+
+//    @GetMapping("/fecha")
+//     public ArrayList<UserModel> usuarioPorRegistro(@RequestParam("fechaIngreso") String fechaIngreso){
+//         LocalDate d1 = LocalDate.parse(fechaIngreso);
+//         return this.usuarioService.usuarioPorRegistro(d1);
+//     }
+
+

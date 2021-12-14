@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.unab.edu.apigym.models.GymModel;
 import co.unab.edu.apigym.services.GymService;
 
 @RestController
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 @RequestMapping("/gym")
 public class gymController {
     @Autowired
@@ -49,8 +48,9 @@ public class gymController {
     public Optional <GymModel> ObtenerGymPorId(@PathVariable("codigo") String codigo){
         return this.gymService.obtenerGymPorId(codigo);
     }
-    @GetMapping("/gnombre")
-    public ArrayList<GymModel> gymPorNombre(@RequestParam("nombre") String nombre){
+    //http://132.226.212.218:8080/usuario/unombre/stiven2
+    @GetMapping("/gnombre/{nombre}")
+    public ArrayList<GymModel> gymPorNombre(@PathVariable("nombre") String nombre){
         return this.gymService.obtenerGymPorNombre(nombre);
     }
 }
